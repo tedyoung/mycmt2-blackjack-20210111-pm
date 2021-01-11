@@ -12,7 +12,7 @@ class HandDisplayTest {
   public void displayFirstCard() throws Exception {
     Hand hand = new Hand(List.of(new Card(Suit.HEARTS, Rank.ACE)));
 
-    assertThat(hand.displayFirstCard())
+    assertThat(ConsoleHand.displayFirstCard(hand))
         .isEqualTo("\u001B[31m┌─────────┐\u001B[1B\u001B[11D│A        │\u001B[1B\u001B[11D│         │\u001B[1B\u001B[11D│    ♥    │\u001B[1B\u001B[11D│         │\u001B[1B\u001B[11D│        A│\u001B[1B\u001B[11D└─────────┘");
   }
 
