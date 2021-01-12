@@ -16,6 +16,8 @@ public class ConsoleGameOutcome {
       return "Push: The house wins, you Lose. 💸";
     } else if (gameOutcome == GameOutcome.PLAYER_LOSES) {
       return "You lost to the Dealer. 💸";
+    } else if (gameOutcome == GameOutcome.PLAYER_WINS_BLACKJACK) {
+      return "You won Blackjack!!";
     } else {
       throw new UnsupportedOperationException();
     }
