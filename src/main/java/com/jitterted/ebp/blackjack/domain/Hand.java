@@ -32,7 +32,7 @@ public class Hand {
     return handValue;
   }
 
-  public boolean dealerMustDrawCard() {
+  boolean dealerMustDrawCard() {
     return value() <= 16;
   }
 
@@ -41,19 +41,19 @@ public class Hand {
     return List.copyOf(cards);
   }
 
-  public void drawFrom(Deck deck) {
+  void drawFrom(Deck deck) {
     cards.add(deck.draw());
   }
 
-  public boolean isBusted() {
+  boolean isBusted() {
     return value() > 21;
   }
 
-  public boolean pushes(Hand hand) {
+  boolean pushes(Hand hand) {
     return hand.value() == value();
   }
 
-  public boolean beats(Hand hand) {
+  boolean beats(Hand hand) {
     return hand.value() < value();
   }
 

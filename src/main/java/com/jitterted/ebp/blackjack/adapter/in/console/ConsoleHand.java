@@ -13,6 +13,7 @@ public class ConsoleHand {
   }
 
   public static String cardsAsString(Hand hand) {
+
     return hand.cards().stream()
                .map(ConsoleCard::display)
                .collect(Collectors.joining(

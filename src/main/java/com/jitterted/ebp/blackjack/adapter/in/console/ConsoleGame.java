@@ -15,17 +15,11 @@ public class ConsoleGame {
     this.game = game;
   }
 
-  public static void main(String[] args) {
-    Game game = new Game();
-    ConsoleGame consoleGame = new ConsoleGame(game);
-    consoleGame.start();
-  }
-
-  public static void resetScreen() {
+  private void resetScreen() {
     System.out.println(ansi().reset());
   }
 
-  public static void displayWelcomeScreen() {
+  private void displayWelcomeScreen() {
     System.out.println(ansi()
                            .bgBright(Ansi.Color.WHITE)
                            .eraseScreen()
@@ -49,7 +43,7 @@ public class ConsoleGame {
             .a("└─────────┘"));
   }
 
-  public void displayGameState() {
+  private void displayGameState() {
     System.out.print(ansi().eraseScreen().cursor(1, 1));
     System.out.println("Dealer has: ");
     System.out.println(ConsoleHand.displayFirstCard(game.dealerHand())); // first card is Face Up
@@ -63,7 +57,7 @@ public class ConsoleGame {
     System.out.println(" (" + game.playerHand().displayValue() + ")");
   }
 
-  public void displayFinalGameState() {
+  private void displayFinalGameState() {
     System.out.print(ansi().eraseScreen().cursor(1, 1));
     System.out.println("Dealer has: ");
     System.out.println(ConsoleHand.cardsAsString(game.dealerHand()));
@@ -93,14 +87,14 @@ public class ConsoleGame {
     resetScreen();
   }
 
-  public String inputFromPlayer() {
+  private String inputFromPlayer() {
     System.out.println("[H]it or [S]tand?");
     Scanner scanner = new Scanner(System.in);
     return scanner.nextLine();
   }
 
 
-  public void playerPlays() {
+  private void playerPlays() {
     while (!game.isPlayerDone()) {
       displayGameState();
       String command = inputFromPlayer();
@@ -109,7 +103,7 @@ public class ConsoleGame {
   }
 
   // DISPATCHER
-  public void handle(String command) {
+  private void handle(String command) {
     if (command.toLowerCase().startsWith("h")) {
       game.playerHits();
     } else if (command.toLowerCase().startsWith("s")) {
