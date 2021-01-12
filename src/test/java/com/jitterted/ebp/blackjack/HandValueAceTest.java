@@ -20,7 +20,7 @@ public class HandValueAceTest {
   }
 
   @Test
-  public void handWithOneAceAndOtherCardsAs10IsValuedAt11() throws Exception {
+  public void handWithOneAceAndOtherCardsAs10IsValuedAt21() throws Exception {
     Hand hand = createHand(Rank.ACE, Rank.TEN);
 
     assertThat(hand.valueEquals(11 + 10))
