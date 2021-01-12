@@ -1,5 +1,6 @@
-package com.jitterted.ebp.blackjack;
+package com.jitterted.ebp.blackjack.domain;
 
+import com.jitterted.ebp.blackjack.adapter.in.console.ConsoleHand;
 import org.fusesource.jansi.Ansi;
 
 import java.util.Scanner;
@@ -20,7 +21,7 @@ public class Game {
     resetScreen();
   }
 
-  static void resetScreen() {
+  public static void resetScreen() {
     System.out.println(ansi().reset());
   }
 
@@ -30,7 +31,7 @@ public class Game {
     game.play();
   }
 
-  static void displayWelcomeScreen() {
+  public static void displayWelcomeScreen() {
     System.out.println(ansi()
                            .bgBright(Ansi.Color.WHITE)
                            .eraseScreen()
@@ -108,13 +109,13 @@ public class Game {
     }
   }
 
-  String inputFromPlayer() {
+  public String inputFromPlayer() {
     System.out.println("[H]it or [S]tand?");
     Scanner scanner = new Scanner(System.in);
     return scanner.nextLine();
   }
 
-  void displayGameState() {
+  public void displayGameState() {
     System.out.print(ansi().eraseScreen().cursor(1, 1));
     System.out.println("Dealer has: ");
     System.out.println(ConsoleHand.displayFirstCard(dealerHand)); // first card is Face Up
@@ -128,7 +129,7 @@ public class Game {
     System.out.println(" (" + playerHand.displayValue() + ")");
   }
 
-  void displayFinalGameState() {
+  public void displayFinalGameState() {
     System.out.print(ansi().eraseScreen().cursor(1, 1));
     System.out.println("Dealer has: ");
     System.out.println(ConsoleHand.cardsAsString(dealerHand));

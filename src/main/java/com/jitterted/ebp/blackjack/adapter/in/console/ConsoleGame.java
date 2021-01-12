@@ -1,4 +1,6 @@
-package com.jitterted.ebp.blackjack;
+package com.jitterted.ebp.blackjack.adapter.in.console;
+
+import com.jitterted.ebp.blackjack.domain.Game;
 
 public class ConsoleGame {
 
@@ -14,6 +16,7 @@ public class ConsoleGame {
     consoleGame.start();
   }
 
+  // Controller
   public void start() {
     Game.displayWelcomeScreen();
 
@@ -38,6 +41,7 @@ public class ConsoleGame {
     }
   }
 
+  // DISPATCHER
   public void handle(String command) {
     if (command.toLowerCase().startsWith("h")) {
       game.playerHits();
