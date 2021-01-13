@@ -29,4 +29,10 @@ public class WebTest {
            .andExpect(redirectedUrl("/game"));
   }
 
+  @Test
+  public void getOfGameEndpointIs200Ok() throws Exception {
+    mockMvc.perform(get("/game"))
+           .andExpect(status().isOk());
+  }
+
 }
