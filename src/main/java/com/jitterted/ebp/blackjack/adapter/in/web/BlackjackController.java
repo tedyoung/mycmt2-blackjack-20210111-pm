@@ -36,6 +36,10 @@ public class BlackjackController {
   public String hitCommand() {
     game.playerHits();
 
+    return redirectFromGameState();
+  }
+
+  public String redirectFromGameState() {
     if (game.isPlayerDone()) {
       return "redirect:/done";
     }
@@ -51,5 +55,12 @@ public class BlackjackController {
     model.addAttribute("outcome", game.determineOutcome().toString());
 
     return "done";
+  }
+
+  @PostMapping("/stand")
+  public String standCommand() {
+    game.playerStands();
+
+    return redirectFromGameState();
   }
 }

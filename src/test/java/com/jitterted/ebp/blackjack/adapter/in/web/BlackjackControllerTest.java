@@ -3,6 +3,7 @@ package com.jitterted.ebp.blackjack.adapter.in.web;
 import com.jitterted.ebp.blackjack.domain.Card;
 import com.jitterted.ebp.blackjack.domain.Deck;
 import com.jitterted.ebp.blackjack.domain.Game;
+import com.jitterted.ebp.blackjack.domain.GameOutcome;
 import com.jitterted.ebp.blackjack.domain.Rank;
 import com.jitterted.ebp.blackjack.domain.StubDeck;
 import com.jitterted.ebp.blackjack.domain.Suit;
@@ -100,5 +101,39 @@ class BlackjackControllerTest {
 
     assertThat(outcome)
         .isNotBlank();
+  }
+  
+  @Test
+  public void standResultsInGamePlayerIsDone() throws Exception {
+    Game game = new Game(new Deck());
+    BlackjackController blackjackController = new BlackjackController(game);
+    blackjackController.startGame();
+
+    String redirect = blackjackController.standCommand();
+
+    assertThat(game.isPlayerDone())
+        .isTrue();
+
+    assertThat(redirect)
+        .isEqualTo("redirect:/done");
+  }
+
+  @Test
+  public void standResultsInPlayerBeatsDealerWhoDrewAdditionalCard() throws Exception {
+    Deck stubDeck = new StubDeck(Rank.TEN, Rank.QUEEN,
+                                 Rank.EIGHT, Rank.FIVE,
+                                 Rank.SIX);
+    Game game = new Game(stubDeck);
+    BlackjackController blackjackController = new BlackjackController(game);
+    blackjackController.startGame();
+
+    blackjackController.standCommand();
+
+    assertThat(game.dealerHand().cards())
+        .hasSize(3);
+
+    assertThat(game.determineOutcome())
+        .isEqualTo(GameOutcome.PLAYER_LOSES);
+
   }
 }
