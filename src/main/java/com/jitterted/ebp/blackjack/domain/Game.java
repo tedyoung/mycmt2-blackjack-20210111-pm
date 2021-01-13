@@ -57,6 +57,9 @@ public class Game {
   }
 
   public void playerHits() {
+//    if (isPlayerDone()) {
+//      throw new IllegalStateException();
+//    }
     playerHand.drawFrom(deck);
     playerDone = playerHand.isBusted();
   }
